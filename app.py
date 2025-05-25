@@ -3,10 +3,7 @@ from dotenv import load_dotenv
 import pandas as pd
 import requests, json, os, time, feedparser
 load_dotenv("app.env")
-rss = feedparser.parse("https://export.arxiv.org/rss/cs.LG")
-print(f"Entries found: {len(rss.entries)}")
-for entry in rss.entries[:5]:
-    print(entry.title)
+
 
 del rss
 OLLAMA = os.getenv("OLLAMA")
@@ -16,6 +13,11 @@ RSS_MAP = {
     "cs.LG": os.getenv("CSLG"),
     "stat.ML": os.getenv("STATML")
 }
+
+# rss = feedparser.parse("https://export.arxiv.org/rss/cs.LG")
+# print(f"Entries found: {len(rss.entries)}")
+# for entry in rss.entries[:5]:
+#     print(entry.title)
 
 def ollama_summary(text: str) -> str:
     try:
